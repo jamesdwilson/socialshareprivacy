@@ -1,0 +1,715 @@
+<html lang="de-DE" style="zoom: 100%; " autopagermatchedrules="1" class="translated-ltr"><head>
+    <title>Documentation - H "socialSharePrivacy" plug-in</title>
+    <meta charset="UTF-8">
+    <meta name="author" content="Hilko Holweg, Sebastian Hilbig, Nicolas Heiringhoff, Juergen Schmidt - Heise Zeitschriften Verlag GbmH &amp; Co. KG">
+    <meta name="description" content="Dokumentation und Einbindung des heise SocialSharePrivacy-Plug-Ins">
+    <style type="text/css">
+        h1, h2, h3 {
+            font: normal 24px/30px Georgia, Times, "Times New Roman", serif;
+            color: #666;
+        }
+        h2 {
+            font-size: 22px;
+            line-height: 28px;
+        }
+        h3 {
+            font-size: 20px;
+            line-height: 26px;
+        }
+        a {
+            color: #039;
+        }
+        pre {
+            background-color: #eee;
+            border: 1px solid #bbb;
+            padding: 10px;
+            margin: 20px 0 0;
+        }
+        pre code {
+            margin: 0;
+            padding: 0;
+        }
+        pre + p {
+            margin-top: 5px;
+        }
+        ol li, p, td, th {
+            font: normal 14px/20px "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+            clear: both;
+        }
+        nav {
+            display: block;
+            margin-bottom: 50px;
+            border-bottom: 1px solid #333;
+        }
+        nav ol li,
+        nav ol li a {
+            font: bold 16px/24px "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, sans-serif;
+            color: #039;
+            -moz-transition: all .5s ease-in;
+            -webkit-transition: all .5s ease-in;
+            transition: all .5s ease-in;
+        }
+        nav ol li a:hover {
+            text-decoration: none;
+            color: #333;
+        }
+        ol#structure li ol {
+            list-style-type: none;
+            padding: 0;
+        }
+        ol#structure li ol#fb_app_id_step_by_step {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+        ol#structure li ol#fb_app_id_step_by_step li {
+            margin-bottom: 16px;
+        }
+        ol#structure li ol li {
+            margin-bottom: 30px;
+        }
+        ol#structure li ol li table {
+            border: 1px solid #333;
+            width: 100%;
+            display: table;
+            margin: 20px 0;
+        }
+        ol#structure li ol.changelog li {
+            margin: 5px 0;
+        }
+        ol#structure li ol.changelog li pre {
+            margin: 5px 0 20px;
+        }
+        table caption {
+            text-align: left;
+            font-size: 18px;
+            font-weight: bold;
+            text-indent: 5px;
+        }
+        table th {
+            text-align: left;
+            font-style: italic;
+            background-color: #333;
+            color: #fff;
+        }
+        table th,
+        table td {
+            padding: 2px 4px;
+            vertical-align: top;
+        }
+        table tr:hover td {
+            background-color: #eee;
+        }
+    </style>
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="http://translate.googleapis.com/translate_static/css/translateelement.css"><script type="text/javascript" charset="UTF-8" src="http://translate.googleapis.com/translate_static/js/element/main.js"></script><script type="text/javascript" charset="UTF-8" src="http://translate.googleapis.com/translate_static/js/element/7/element_main.js"></script></head>
+<body>
+Translation of <a href="http://www.heise.de/extras/socialshareprivacy/">Heise's SocialSharePrivacy plugin</a>.<br/>
+This was originally an automatically translated document, please feel free to contribute to improve it.
+
+<nav>
+    <h2><font><font>Navigation</font></font></h2>
+    <ol>
+        <li><a href="#changelog" rel="noreferrer"><font><font>Change log</font></font></a></li>
+        <li><a href="#files" rel="noreferrer"><font><font>Files</font></font></a></li>
+        <li><a href="#pre" rel="noreferrer"><font><font>Requirements and Limitations</font></font></a></li>
+        <li><a href="#dimensions" rel="noreferrer"><font><font>Dimensions</font></font></a></li>
+        <li><font><font>Simple integration
+        </font></font><ol>
+            <li><a href="#merge" rel="noreferrer"><font><font>Source</font></font></a></li>
+            <li><a href="#explanation" rel="noreferrer"><font><font>Explanation of codes</font></font></a></li>
+        </ol>
+        </li>
+        <li><a href="#options" rel="noreferrer"><font><font>Options</font></font></a>
+            <ol>
+                <li><a href="#options_general" rel="noreferrer"><font><font>General</font></font></a></li>
+                <li><a href="#options_facebook" rel="noreferrer"><font><font>Facebook</font></font></a></li>
+                <li><a href="#options_twitter" rel="noreferrer"><font><font>Twitter</font></font></a></li>
+                <li><a href="#options_gplus" rel="noreferrer"><font><font>Google +</font></font></a></li>
+            </ol>
+        </li>
+        <li><a href="#examples" rel="noreferrer"><font><font class="">Sample integrations</font></font></a>
+            <ol>
+                <li><a href="#only_fb" rel="noreferrer"><font><font>Only integrate Facebook</font></font></a></li>
+                <li><a href="#no_perma" rel="noreferrer"><font><font>No option to permanently activate offer</font></font></a></li>
+                <li><a href="#only_gplus_css_path" rel="noreferrer"><font><font>Google only offer + and specify your own path to the CSS file.</font></font></a></li>
+            </ol>
+        </li>
+        <li><a href="#url" rel="noreferrer"><font><font>URL</font></font></a></li>
+        <li><a href="#perma_option" rel="noreferrer"><font><font>Remember my settings</font></font></a></li>
+        <li><a href="#licence" rel="noreferrer"><font><font>License</font></font></a></li>
+        <li><a href="#logo" rel="noreferrer"><font><font>Logo</font></font></a></li>
+    </ol>
+</nav>
+
+<ol id="structure">
+<li>
+    <h2 id="changelog"><font><font>Change log</font></font></h2>
+    <ol class="changelog">
+        <li>
+            <h3 id="v1-3"><font><font>Version 1.3</font></font></h3>
+            <ul>
+                <li><font><font>
+                    First version, which can also be used multiple times on one page. </font><font>This can be used in different instances of different URIs, the option is via </font></font><code><font><font>uri</font></font></code><font><font> laws feature a pop-DOM nodes passed through which one can identify a URI. </font><font>Examples of the use we have the documentation for the </font></font><a href="#examples" rel="noreferrer"><font><font>sample transclusions</font></font></a><font><font> added.
+                </font></font></li>
+                <li><font><font>
+                    Correction for IE &lt;9: The per </font></font><code><font><font>css_path</font></font></code><font><font> specified style sheet has not been built with jQuery versions = 1.4.2!.
+                </font></font></li>
+            </ul>
+        </li>
+        <li>
+            <h3 id="v1-2"><font><font>Version 1.2</font></font></h3>
+            <ul>
+                <li><font><font>
+                    JS: Facebook app id, removed as it no longer necessary to use the Like / Recommend button.
+                </font></font></li>
+            </ul>
+        </li>
+        <li>
+            <h3 id="v1-1"><font><font>Version 1.1</font></font></h3>
+            <ul>
+                <li><font><font>
+                    CSS: At various elements we have added more information to the final configuration, keep in integrating into their own pages, lower. </font><font>Above all, we have </font></font><code><font><font>margin</font></font></code><font><font> - </font></font><code><font><font>padding</font></font></code><font><font> - </font></font><code><font><font>width</font></font></code><font><font> and - </font></font><code><font><font>height</font></font></code><font><font> -added information.
+                </font></font></li>
+                <li><font><font>
+                    The document has been extended by a examples and this change log area.
+                </font></font></li>
+                <li><font><font>
+                    The plug-in content was slightly changed and made some code abbreviations.
+                </font></font></li>
+                <li><font><font>
+                    JS bug-fix: There was an error, if it is in the side of a </font></font><code><font><font>canonical</font></font></code><font><font> attribute was, but that was an empty value.
+                </font></font></li>
+                <li><font><font>
+                    JS-Bug correction: When the options of Google + there was a statement that was later interrogated in the script before.
+                </font></font></li>
+                <li><font><font>
+                    JS bug-fix: The Perma-option of Google + was only when the permafrost was enabled by Twitter.
+                </font></font></li>
+                <li><font><font>
+                    Twitter: If activated the iFrame was too large and layered underneath links. </font></font><code><font><font>&lt;iframe ...style="width:130px; height:25px;"&gt; &lt;/ iframe&gt;</font></font></code><font><font> added.
+                </font></font></li>
+                <li><font><font>General: If the option is css_path empty, no link tag is fitted with an empty href in the page.</font></font></li>
+                <li><font><font>General: The use of the buttons can now have the option URI </font></font><code><font><font>uri</font></font></code><font><font> can be controlled. </font><font>It is both a fixed value, as a function possible. </font><font>Default is the function included </font></font><code><font><font>getUri</font></font></code></li>
+                <li><strong><font><font>New features:</font></font></strong>
+                    <ul>
+                        <li><font><font>Facebook: The label versions of the button "Share" and "Like" can be controlled via the new "action". </font><font>Values ​​are " </font></font><code><font><font>recommend</font></font></code><font><font> "(default) and" </font></font><code><font><font>like</font></font></code><font><font> ".</font></font></li>
+                        <li><font><font>Twitter: parameter " </font></font><code><font><font>language</font></font></code><font><font> "(default" </font></font><code><font><font>en</font></font></code><font><font> ") now available for Twitter.</font></font></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3 id="v1-0"><font><font>Version 1.0</font></font></h3>
+            <ul>
+                <li><font><font>First public release</font></font></li>
+            </ul>
+        </li>
+    </ol>
+</li>
+
+<li>
+    <h2 id="files"><font><font>Files</font></font></h2>
+    <p><font><font>Our plug-in includes the following files:</font></font></p>
+    <ul>
+        <li><font><font>index.html (the document you are reading)</font></font></li>
+        <li><font><font>dimensions.gif (infographics for this document)</font></font></li>
+        <li><font><font>2-click-logo_min.jpg (small logo)</font></font></li>
+        <li><font><font>jquery.socialshareprivacy.js</font></font></li>
+        <li><font><font>jquery.socialshareprivacy.min.js</font></font></li>
+        <li><font><font>socialshareprivacy / socialshareprivacy.css</font></font></li>
+        <li><font><font>socialshareprivacy / images / dummy_facebook.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / dummy_facebook_en.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / dummy_gplus.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / dummy_twitter.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / settings.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / socialshareprivacy_info.png</font></font></li>
+        <li><font><font>socialshareprivacy / images / socialshareprivacy_on_off.png</font></font></li>
+        <li><font><font>socialshareprivacy/images/2-klick-logo.jpg</font></font></li>
+    </ul>
+</li>
+<li>
+    <h2 id="pre"><font><font>Requirements and Limitations</font></font></h2>
+    <p><font><font>
+        Technical requirements are jQuery and JavaScript enabled in your browser. </font><font>We tested with jQuery 1.4. </font></font><br><font><font>
+        The plug-in can now be used within an HTML page only once.
+    </font></font></p>
+    <p><font><font>
+        If you have any suggestions for improvement, please contact us via email at </font></font><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;tf=1&amp;to=2klick@heise.de&amp;su=Vorschlag%20zum%20Plug-In" rel="noreferrer" target="_blank"><font><font>2klick@heise.de</font></font></a><font><font> .
+    </font></font></p>
+    <p><font><font>
+        The permanent activation of the service works only in Internet Explorer, version 8, because previous versions do not support JSON. </font><font>Therefore, absent in IE &lt;= 7 this function. </font><font>The rest of the plug-ins is not affected.
+    </font></font></p>
+    <p>
+        <del datetime="2011-10-04" cite="http://www.heise.de/extras/socialshareprivacy/#v1-2"><font><font>For its own Facebook app mandatory ID is required, see </font></font><a href="#fb_app-id" rel="noreferrer"><font><font>Note on the Facebook app id</font></font></a><font><font> .</font></font></del>
+    </p>
+</li>
+<li>
+    <h2 id="dimensions"><font><font>Dimensions</font></font></h2>
+    <img src="dimensions.gif" width="600" height="284" alt="Dimensions of the plug-ins">
+    <p><font><font>
+        The plug-in requires a total of about 600 pixels in width (when all services are running) and about 290 pixels in height, but this depends also on the length of the specified mouse-over text.
+    </font></font></p>
+</li><li>
+    <ol>
+        <li>
+            <h2 id="merge"><font><font>Integration</font></font></h2>
+<pre><code><font><font>&lt;head&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font class="">
+    Click Here src="jquery.js"&gt; &lt;/ script&gt; </font></font><font></font><font><font>
+    Click Here src="jquery.socialshareprivacy.js"&gt; &lt;/ script&gt;</font></font><font></font><font><font>
+    &lt;script type="text/javascript"&gt;</font></font><font></font><font><font>
+    jQuery (document). ready (function ($) {</font></font><font></font><font><font>
+    if ($ ('# socialshareprivacy'). length&gt; 0) {</font></font><font></font><font><font class="">
+    $ ('# Socialshareprivacy') socialSharePrivacy ().; </font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    });</font></font><font></font><font><font>
+    &lt;/ Script&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font>
+    &lt;/ Head&gt;</font></font><font></font><font><font>
+    &lt;body&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font>
+    &lt;div id="socialshareprivacy"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font>
+    &lt;/ Body&gt;</font></font></code>
+</pre>
+        </li>
+        <li>
+            <h3 id="explanation"><font><font>Explanation of codes</font></font></h3>
+
+<pre><code><font><font>Click Here src="jquery.js"&gt; &lt;/ script&gt; </font></font><font></font><font><font>
+    Click Here src="jquery.socialshareprivacy.js"&gt; &lt;/ script&gt;</font></font></code>
+</pre>
+            <p><font><font>
+                The first line binds the JavaScript framework "JQuery" ( </font></font><a href="http://jquery.com/" rel="noreferrer"><font><font>http://jquery.com/</font></font></a><font><font> ) that the second line of our plug-in. </font><font>jQuery is our package </font></font><strong><font><font>is not</font></font></strong><font><font> in, you have yet to even download it from the aforementioned website.
+            </font></font></p>
+
+<pre><code><font><font>&lt;script type="text/javascript"&gt;</font></font><font></font><font><font>
+    jQuery (document). ready (function ($) {</font></font><font></font><font><font>
+    if ($ ('# socialshareprivacy'). length&gt; 0) {</font></font><font></font><font><font>
+    $ ('# Socialshareprivacy') socialSharePrivacy ().; </font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    });</font></font><font></font><font><font>
+    &lt;/ Script&gt;</font></font></code>
+</pre>
+            <p><font><font>
+                In this </font></font><code><font><font>&lt;script&gt;</font></font></code><font><font> will block the plug-in function to an arbitrary hanging, empty HTML element in the side, in this case, the element with the </font></font><code><font><font>id </font></font></code> <em><font><font>socialshareprivacy</font></font></em><font><font> . </font></font><br><font><font>
+                order to attach the plug-ins will only happen if the element is actually present, we do not have the control function </font></font><code><font><font>if</font></font></code><font><font> that surrounds the attachment and check the necessary condition.
+            </font></font></p>
+
+<pre><code><font><font>&lt;body&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font>
+    &lt;div id="socialshareprivacy"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+    ...</font></font><font></font><font><font>
+    &lt;/ Body&gt;</font></font></code>
+</pre>
+            <p><font><font>
+                Somewhere in </font></font><code><font><font>&lt;body&gt;</font></font></code><font><font> section of the website you placed the empty HTML element with the desired </font></font><code><font><font>id</font></font></code><font><font> , used for the same </font></font><code><font><font>id</font></font></code><font><font> in the previous </font></font><code><font><font>&lt;script&gt;</font></font></code><font><font> block needs to be.
+            </font></font></p>
+        </li>
+    </ol>
+</li>
+<li>
+<h2 id="options"><font><font>Options</font></font></h2>
+<p><font><font>
+    To integrate a variety of options are available. </font><font>The following are the general options listed first and then the options for the individual services (Facebook, Twitter, Google +) are listed. </font></font><br><font><font>
+    example of a call with options:
+</font></font></p>
+<pre><code><font><font>$ ('# Socialshareprivacy'). SocialSharePrivacy ({</font></font><font></font><font><font>
+    services: {</font></font><font></font><font><font>
+    facebook: {</font></font><font></font><font><font>
+    'Perma_option': 'off'</font></font><font></font><font><font>
+    }, </font></font><font></font><font><font>
+    twitter: {</font></font><font></font><font><font>
+    'Status': 'off'</font></font><font></font><font><font>
+    },</font></font><font></font><font><font>
+    GPlus: {</font></font><font></font><font><font>
+    'Display_name': 'Google Plus'</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    },</font></font><font></font><font><font>
+    'Cookie_domain': 'heise.de'</font></font><font></font><font><font>
+    });</font></font></code>
+</pre>
+<ol>
+<li id="options_general">
+    <table summary="Eine Auflistung aller allgemeinen Optionen des socialSharePrivacy-Plug-Ins">
+        <caption><font><font>general options</font></font></caption>
+        <thead>
+        <tr>
+            <th><font><font>Option</font></font></th>
+            <th><font><font>Default</font></font></th>
+            <th><font><font>Description</font></font></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><font><font>info_link</font></font></td>
+            <td><font><font>http://www.heise.de/ct/artikel/2-Klicks-fuer-mehr-Datenschutz-1333879.html</font></font></td>
+            <td><font><font>Link to detailed privacy information, in our case an H-item.</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_help</font></font></td>
+            <td><em><font><font>Text</font></font></em></td>
+            <td><font><font>Mouseover text of the </font></font><em><font><font>i</font></font></em><font><font> -icon</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>settings_perma</font></font></td>
+            <td><font><font>Remember to enable data transfer and agree:</font></font></td>
+            <td><font><font>Headline of the settings menu</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>cookie_path</font></font></td>
+            <td><font><font>/</font></font></td>
+            <td><font><font>Path of the cookie</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>cookie_domain</font></font></td>
+            <td><code><font><font>document.location.host</font></font></code></td>
+            <td><font><font>Domain for which the cookie is valid</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>cookie_expires</font></font></td>
+            <td><font><font>365</font></font></td>
+            <td><font><font>The duration of the cookie is valid in days</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>css_path</font></font></td>
+            <td><font><font>socialshareprivacy / socialshareprivacy.css</font></font></td>
+            <td><font><font>Path to CSS file, empty if no stylesheet is installed</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>uri</font></font></td>
+            <td><font><font>getUri</font></font></td>
+            <td><font><font>The URI to be passed by the buttons. </font><font>Possible is a fixed value (eg </font></font><code><font><font>"http://www.heise.de"</font></font></code><font><font> ) or function (see </font></font><code><font><font>function getUri ()</font></font></code><font><font> in the Plug-in source code)</font></font></td>
+        </tr>
+        </tbody>
+    </table>
+</li>
+<li id="options_facebook">
+    <table summary="Eine Auflistung aller Optionen für Facebook des socialSharePrivacy-Plug-Ins">
+        <caption><font><font>Options: Facebook</font></font></caption>
+        <thead>
+        <tr>
+            <th><font><font>Option</font></font></th>
+            <th><font><font>Default</font></font></th>
+            <th><font><font>Description</font></font></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><font><font>status</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has to select Facebook</font></font></td>
+        </tr>
+        <tr>
+            <td><del datetime="2011-10-04" cite="http://www.heise.de/extras/socialshareprivacy/#v1-2"><font><font>app_id</font></font></del></td>
+            <td><em><font><font>omitted (since version 1.2)</font></font></em></td>
+            <td><del datetime="2011-10-04" cite="http://www.heise.de/extras/socialshareprivacy/#v1-2"><font><font>Facebook App-ID, it is necessary to the </font></font><em><font><font>Recommended</font></font></em><font><font> button can take advantage of Facebook. </font><font>If it is not specified, the user despite Facebook </font></font><code><font><font>'status': 'on' </font></font></code> <strong><font><font>not</font></font></strong><font><font> available. </font><font>In the JavaScript console, the developer a notice is issued.</font></font></del></td>
+        </tr>
+        <tr>
+            <td><font><font>dummy_img</font></font></td>
+            <td><font><font>socialshareprivacy / images / dummy_facebook.png</font></font></td>
+            <td><font><font>Path to the static graphics</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_info</font></font></td>
+            <td><em><font><font>Text</font></font></em></td>
+            <td><font><font>Mouseover text of the Recommended button</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_fb_off</font></font></td>
+            <td><font><font>not linked to Facebook</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the off state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_fb_on</font></font></td>
+            <td><font><font>connected to Facebook</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the ON state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>perma_option</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has the option to leave Facebook show permanently (via a cookie)</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>display_name</font></font></td>
+            <td><font><font>Facebook</font></font></td>
+            <td><font><font>Spelling of the service in the options</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>referrer_track</font></font></td>
+            <td>&nbsp;</td>
+            <td><font><font>Is hung at the end of the URL, referrer tracking can be used</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>language</font></font></td>
+            <td><font><font>en_US</font></font></td>
+            <td><font><font>Language setting</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>action</font></font></td>
+            <td><font><font>recommend</font></font></td>
+            <td><font><font>Label of the button: Recommended ( </font></font><code><font><font>recommend</font></font></code><font><font> ) or like me ( </font></font><code><font><font>like</font></font></code><font><font> )</font></font></td>
+        </tr>
+        </tbody>
+    </table>
+</li>
+<li id="options_twitter">
+    <table summary="Eine Auflistung aller Optionen für Twitter des socialSharePrivacy-Plug-Ins">
+        <caption><font><font>Options: Twitter</font></font></caption>
+        <thead>
+        <tr>
+            <th><font><font>Option</font></font></th>
+            <th><font><font>Default</font></font></th>
+            <th><font><font>Description</font></font></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><font><font>status</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has to choose from Twitter</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>dummy_img</font></font></td>
+            <td><font><font>socialshareprivacy / images / dummy_twitter.png</font></font></td>
+            <td><font><font class="">Path to the static graphics</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_info</font></font></td>
+            <td><em><font><font>Text</font></font></em></td>
+            <td><font><font>Mouseover text of the Tweet button</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_twitter_off</font></font></td>
+            <td><font><font>not associated with Twitter</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the off state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_twitter_on</font></font></td>
+            <td><font><font>associated with Twitter</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the ON state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>perma_option</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has the option to leave permanently Show Twitter (via a cookie)</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>display_name</font></font></td>
+            <td><font><font>Twitter</font></font></td>
+            <td><font><font>Spelling of the service in the options</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>referrer_track</font></font></td>
+            <td>&nbsp;</td>
+            <td><font><font>Is hung at the end of the URL, referrer tracking can be used</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>tweet_text</font></font></td>
+            <td><code><font><font>getTweetText</font></font></code></td>
+            <td><font><font>
+                The function checks whether the meta tag </font></font><code><font><font>DC.title</font></font></code><font><font> there and use those. </font><font>Is it also still </font></font><code><font><font>DC.creator</font></font></code><font><font> this is somewhat removed ("-") is appended. </font><font class="">Is </font></font><code><font><font class="">DC.title</font></font></code><font><font class=""> No &lt;title&gt; the tag of the page is used. </font></font><br><font><font class="">
+                This option can use his own text ( </font></font><code><font><font class="">typeof == string</font></font></code><font><font class=""> will be overwritten) or with a specific function ( </font></font><code><font><font class="">typeof == function</font></font></code><font><font class=""> ) that generates the text. </font></font><br><font><font class="">
+                The passed text is always truncated to 120 characters and spaces with the last ... replaced.
+            </font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>language</font></font></td>
+            <td><font><font>s</font></font></td>
+            <td><font><font>Language setting (the default is " </font></font><code><font><font>en</font></font></code><font><font> "yes, we like it better than Twitter Tweet)</font></font></td>
+        </tr>
+        </tbody>
+    </table>
+</li>
+<li id="options_gplus">
+    <table summary="Eine Auflistung aller Optionen für Google+ des socialSharePrivacy-Plug-Ins">
+        <caption><font><font>Options: Google +</font></font></caption>
+        <thead>
+        <tr>
+            <th><font><font>Option</font></font></th>
+            <th><font><font>Default</font></font></th>
+            <th><font><font>Description</font></font></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td><font><font>status</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has selected Google to +</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>dummy_img</font></font></td>
+            <td><font><font>socialshareprivacy / images / dummy_gplus.png</font></font></td>
+            <td><font><font>Path to the static graphics</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_info</font></font></td>
+            <td><em><font><font>Text</font></font></em></td>
+            <td><font><font>Mouseover text of "+1" button</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_gplus_off</font></font></td>
+            <td><font><font>not associated with Google +</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the off state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>txt_gplus_on</font></font></td>
+            <td><font><font>+ associated with Google</font></font></td>
+            <td><font><font>Text equivalent of graphic switch in the ON state, generally not visible to the user</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>perma_option</font></font></td>
+            <td><font><font>on</font></font></td>
+            <td><font><font>The user has the option to let Google map + permanently (via a cookie)</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>display_name</font></font></td>
+            <td><font><font>Google +</font></font></td>
+            <td><font><font>Spelling of the service in the options</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>referrer_track</font></font></td>
+            <td>&nbsp;</td>
+            <td><font><font>Is hung at the end of the URL, referrer tracking can be used</font></font></td>
+        </tr>
+        <tr>
+            <td><font><font>language</font></font></td>
+            <td><font><font>de</font></font></td>
+            <td><font><font>Language setting</font></font></td>
+        </tr>
+        </tbody>
+    </table>
+</li>
+</ol>
+</li>
+<li>
+    <h2 id="examples"><font><font>Sample integrations</font></font></h2>
+    <p><font><font>
+        The following are a few examples of common configurations of transclusions.
+    </font></font></p>
+    <ul>
+        <li>
+            <h3 id="only_fb"><font><font>Only integrate Facebook</font></font></h3>
+<pre><code><font><font>$ ('# Socialshareprivacy'). SocialSharePrivacy ({</font></font><font></font><font><font>
+    services: {</font></font><font></font><font><font>
+    twitter: {</font></font><font></font><font><font>
+    'Status': 'off'</font></font><font></font><font><font>
+    },</font></font><font></font><font><font>
+    GPlus: {</font></font><font></font><font><font>
+    'Status': 'off'</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    });</font></font></code>
+</pre>
+        </li>
+        <li>
+            <h3 id="no_perma"><font><font>No option to permanently activate offer</font></font></h3>
+<pre><code><font><font class="">$ ('# Socialshareprivacy'). SocialSharePrivacy ({</font></font><font></font><font><font>
+    services: {</font></font><font></font><font><font>
+    facebook: {</font></font><font></font><font><font>
+    'Perma_option': 'off'</font></font><font></font><font><font>
+    }, </font></font><font></font><font><font>
+    twitter: {</font></font><font></font><font><font>
+    'Perma_option': 'off'</font></font><font></font><font><font>
+    },</font></font><font></font><font><font>
+    GPlus: {</font></font><font></font><font><font>
+    'Perma_option': 'off'</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    });</font></font></code>
+</pre>
+        </li>
+        <li>
+            <h3 id="only_gplus_css_path"><font><font class="">Google only offer + and specify your own path to the CSS file.</font></font></h3>
+<pre><code><font><font>$ ('# Socialshareprivacy'). SocialSharePrivacy ({</font></font><font></font><font><font>
+    services: {</font></font><font></font><font><font>
+    facebook: {</font></font><font></font><font><font>
+    'Status': 'off'</font></font><font></font><font><font>
+    }, </font></font><font></font><font><font>
+    twitter: {</font></font><font></font><font><font>
+    'Status': 'off'</font></font><font></font><font><font>
+    }</font></font><font></font><font><font>
+    },</font></font><font></font><font><font>
+    'Css_path': '/ style / plugins / socialshareprivacy.css'</font></font><font></font><font><font>
+    });</font></font></code>
+</pre>
+        </li>
+        <li>
+            <h3><font><font>Several 2-click button bars on one side</font></font></h3>
+            <h4><font><font>Option 1: A call to the appropriate plug-ins with a selector</font></font></h4>
+<pre><font><font>&lt;div class="anriss"&gt;</font></font><font></font><font><font>
+    &lt;h3&gt; &lt;a href="http://www.heise.de"&gt; heise &lt;/ a&gt; &lt;/ h3&gt;</font></font><font></font><font><font>
+    &lt;p&gt; lorem ipsum &lt;/ p&gt;</font></font><font></font><font><font>
+    &lt;div class="social"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+    &lt;/ Div&gt;</font></font><font></font>
+<font></font><font><font>
+        &lt;div class="anriss"&gt;</font></font><font></font><font><font>
+        &lt;h3&gt; &lt;a href="http://www.heise.de/security/"&gt; heise security &lt;/ a&gt; &lt;/ h3&gt;</font></font><font></font><font><font>
+        &lt;p&gt; dolor sit amet &lt;/ p&gt;</font></font><font></font><font><font>
+        &lt;div class="social"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+        &lt;/ Div&gt;</font></font><font></font>
+<font></font><font><font>
+        &lt;script&gt;</font></font><font></font><font><font>
+        $ (". Social"). SocialSharePrivacy ({</font></font><font></font><font><font>
+        uri: function (context) {</font></font><font></font><font><font>
+        return $ (context) parents ("anriss.") find ("h3 a") attr ("href")...;</font></font><font></font><font><font>
+        }</font></font><font></font><font><font>
+        });</font></font><font></font><font><font>
+        &lt;/ Script&gt;</font></font><font></font>
+</pre>
+            <h4><font><font>Option 2: Multiple call the plug-ins</font></font></h4>
+<pre><font><font>&lt;div&gt;</font></font><font></font><font><font>
+    &lt;h3&gt; &lt;a href="http://www.heise.de"&gt; heise &lt;/ a&gt; &lt;/ h3&gt;</font></font><font></font><font><font>
+    &lt;p&gt; lorem ipsum &lt;/ p&gt;</font></font><font></font><font><font>
+    &lt;div id="one"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+    &lt;/ Div&gt;</font></font><font></font><font><font>
+    &lt;script&gt;</font></font><font></font><font><font>
+    $ ("# One"). SocialSharePrivacy ({</font></font><font></font><font><font>
+    uri: "http://www.heise.de"</font></font><font></font><font><font>
+    });</font></font><font></font><font><font>
+    &lt;/ Script&gt;</font></font><font></font>
+<font></font><font><font>
+        &lt;div&gt;</font></font><font></font><font><font>
+        &lt;h3&gt; &lt;a href="http://www.heise.de/security/"&gt; heise security &lt;/ a&gt; &lt;/ h3&gt;</font></font><font></font><font><font>
+        &lt;p&gt; dolor sit amet &lt;/ p&gt;</font></font><font></font><font><font>
+        &lt;div id="two"&gt; &lt;/ div&gt;</font></font><font></font><font><font>
+        &lt;/ Div&gt;</font></font><font></font><font><font>
+        &lt;script&gt;</font></font><font></font><font><font>
+        $ ("# Two"). SocialSharePrivacy ({</font></font><font></font><font><font>
+        uri: "http://www.heise.de/security/"</font></font><font></font><font><font>
+        });</font></font><font></font><font><font>
+        &lt;/ Script&gt;</font></font><font></font>
+</pre>
+
+        </li>
+    </ul>
+</li>
+<li>
+    <h2 id="url"><font><font>URL</font></font></h2>
+    <p><font><font>
+        The URL that the service is transferred can be controlled via an option. </font></font><br><font><font>By default, a function within the plug-ins, the URL of the current page </font></font><code><font><font>document.location.href</font></font></code><font><font> determined, however, is a canonical deposited ( </font></font><code><font><font>&lt;link rel = "canonical"&gt;</font></font></code><font><font> ), this will be taken.
+    </font></font></p>
+</li>
+<li>
+    <h2 id="perma_option"><font><font>Remember settings</font></font></h2>
+    <p><font><font>
+        Before the cookie is requested, as are the settings the user will first examine how the plug-in is configured. </font><font class="">If the plug-in has been changed, the user may subsequently no disadvantages. </font></font><br><font><font class="">
+        was turned off for all services the watch list function ( </font></font><code><font><font class="">'perma_option': 'off'</font></font></code><font><font class=""> ) disappears and the setting menu.
+    </font></font></p>
+</li>
+<li>
+    <h2 id="licence"><font><font>License</font></font></h2>
+    <p><font><font>
+        This plug-in is under the MIT License ( </font></font><a href="http://www.opensource.org/licenses/mit-license.php" rel="noreferrer"><font><font>http://www.opensource.org/licenses/mit-license.php</font></font></a><font><font> ) and must be happy for private, as well as commercial purposes only.
+    </font></font></p>
+</li>
+<li>
+    <h2 id="logo"><font><font>Logo</font></font></h2>
+    <p><font><font>
+        Our plug-in is also used by our logo, which you may like to use to apply this action.
+    </font></font><a href="socialshareprivacy/images/2-klick-logo.jpg" rel="noreferrer" class="hoverZoomLink"><img src="2-klick-logo_min.jpg" width="150" height="150" alt="Logo 2 clicks for more privacy" style="float: left;"></a>
+    </p>
+</li>
+</ol><div id="goog-gt-tt" class="goog-tooltip skiptranslate" style="visibility: hidden; display: none; left: 425px; top: 7510px; "><div style="overflow:hidden"><div class="logo"><img src="http://translate.googleapis.com/translate_static/img/mini_google.png"></div><a class="close-button" href="javascript:void(0)" title="Close"><img src="http://www.google.com/images/cleardot.gif" width="15" height="15" style="background-image:url(http://translate.googleapis.com/translate_static/img/te_ctrl3.gif); background-position:-28px 0px"></a></div><div class="top"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="title left">Original Text:</div></div><div class="middle"><div class="original-text">Ist das Plug-In eventuell nachträglich umgestellt worden hat der User dadurch keine Nachteile. Wurde für alle Services die Merken-Funktion ausgeschaltet ( 'perma_option' : 'off' ) wird auch das Einstellungsmenü nicht mehr angezeigt.</div></div><div class="bottom"><div class="activity-links"><span class="activity-link">Show alternative translations</span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none; opacity: 0; "></div></div>
+
+
+</body><link rel="stylesheet" type="text/css" href="data:text/css,"><div style="display: none; " id="It8kS_CRxztM4d8qUhGP3SqhM" class="c0zRT8vtUXzp38tv"></div><div style="display: none; " id="KPjcP1FFmjOH3SDblz_SvNtSx" class="c0zRT8vtUXzp38tv"></div><div style="display: none; " id="JNX1xnu8Sf9AIUifvH" class="c0zRT8vtUXzp38tv"></div></html>
