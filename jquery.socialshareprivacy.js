@@ -1,6 +1,8 @@
 /*
- * jquery.socialshareprivacy.js | 2 Klicks fuer mehr Datenschutz
+ * jquery.socialshareprivacy.js | 2 Clicks for Privacy
+ * English translation and modifications by James Wilson http://jameswilson.name
  *
+ * Originally by Heise
  * http://www.heise.de/extras/socialshareprivacy/
  * http://www.heise.de/ct/artikel/2-Klicks-fuer-mehr-Datenschutz-1333879.html
  *
@@ -85,7 +87,7 @@
             'services' : {
                 'facebook' : {
                     'status'            : 'on',
-                    'dummy_img'         : 'socialshareprivacy/images/dummy_facebook.png',
+                    'dummy_img'         : 'socialshareprivacy/images/dummy_facebook_en.png',
                     'txt_info'          : '2 clicks for more privacy: Only when you click here will the social site know you visisted this page',
                     'txt_fb_off'        : 'not connected with Facebook',
                     'txt_fb_on'         : 'connected with Facebook',
